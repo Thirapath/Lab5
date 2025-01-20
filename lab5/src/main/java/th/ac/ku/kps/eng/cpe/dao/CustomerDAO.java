@@ -45,7 +45,7 @@ public class CustomerDAO {
 	
 	private void saveCustomerList(List<Customer> cusList) {
 		try {
-			File file = new File("Users.dat");
+			File file = new File("Customer.dat");
 			FileOutputStream fos;
 			fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -66,6 +66,23 @@ public class CustomerDAO {
 			}
 		}
 		return null;
+	}
+	
+	public int addCustomer(Customer cus) {
+		List<Customer> cusList = getAllCustomers();
+		boolean cusExists = false;
+		for (Customer c : cusList) {
+			if (c.name.equalsIgnoreCase(cus.name)) {
+			cusExists = true;
+			break;
+			}
+		}
+		if (!cusExists) {
+			cusList.add(cus);
+			saveCustomerList(cusList);
+			return 1;
+		}
+		return 0;
 	}
 
 

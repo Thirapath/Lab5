@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Customer implements Serializable {
 	@JsonProperty("name")
-	private String name;
-	private List<PhoneNumber> phoneNumbers;
+	public String name;
+	private List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
 	
 	public Customer() {
 		phoneNumbers = new ArrayList<PhoneNumber>();
